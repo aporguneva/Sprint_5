@@ -1,7 +1,7 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from locators import Locators
-from data import Data
+from data import URL
 
 
 #Выход из профиля
@@ -17,13 +17,14 @@ def test_logout(registered_user):
     driver.find_element(*Locators.LOGIN_BUTTON).click()
 
     #Ждем переход на главную страницу
-    WebDriverWait(driver, 5).until(EC.url_to_be(Data.MAIN_URL))
+    WebDriverWait(driver, 5).until(EC.url_to_be(URL.MAIN_URL))
 
     #Кликаем  на личный кабинет 
     driver.find_element(*Locators.PERSONAL_ACCOUNT).click()
-    WebDriverWait(driver, 5).until(EC.url_to_be(Data.PROFILE_URL))
+    WebDriverWait(driver, 5).until(EC.url_to_be(URL.PROFILE_URL))
 
-    #Кликаем на выход и ожидаем переход на страницу входа
+    #Кликаем на выход
     driver.find_element(*Locators.LOGOUT_BUTTON).click()
-    WebDriverWait(driver, 5).until(EC.url_to_be(Data.LOGIN_URL))
-    assert driver.current_url == Data.LOGIN_URL
+    #Проверяем переход на страницу входа
+    assert WebDriverWait(driver, 5).until(EC.url_to_be(URL.LOGIN_URL))
+    

@@ -1,4 +1,9 @@
 # Sprint_5
+Файл url.py содержит адреса страниц
+Файл data.py содержит данные для тестирования и ссылки на страницы сайта
+Файл generators.py содержит генераторы почты и пароля
+Файл locators.py содержит локторы
+
 Файл test_registration.py:
 
 test_successful_registration(registered_user) - проверяет успешную регистрацию

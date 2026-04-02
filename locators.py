@@ -24,12 +24,10 @@ class Locators:
     SAUCES_TAB = (By.XPATH, "//span[text()='Соусы']") #Соусы
     FILLINGS_TAB = (By.XPATH, "//span[text()='Начинки']") #Начинки
 
-#Разделы конструктора
-    CONSTRUCTOR_BUNS = (By.XPATH, "//h2[text()='Булки']")
-    CONSTRUCTOR_SAUCES = (By.XPATH, "//h2[text()='Соусы']")
-    CONSTRUCTOR_FILLINGS = (By.XPATH, "//h2[text()='Начинки']")
-
-
+#Активные вкладки конструктра, когда на них кликнули
+    BUNS_TAB_ACTIVE = (By.XPATH, "//div[contains(@class,'tab_tab_type_current') and .//span[text()='Булки']]")
+    SAUCES_TAB_ACTIVE = (By.XPATH, "//div[contains(@class,'tab_tab_type_current') and .//span[text()='Соусы']]")
+    FILLINGS_TAB_ACTIVE = (By.XPATH, "//div[contains(@class,'tab_tab_type_current') and .//span[text()='Начинки']]")
 
 #Ошибка при регситрации
     ERROR_MESSAGE = (By.XPATH, "//p[contains(@class,'input__error')]")

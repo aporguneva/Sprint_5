@@ -1,7 +1,7 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from locators import Locators
-from data import Data
+from data import URL
 
 
 #1 Вход по кнопке «Войти в аккаунт» на главной
@@ -12,7 +12,7 @@ def test_login_via_login_button(registered_user):
     password = registered_user["password"]
 
     #Переходим на главную страницу
-    driver.get(Data.MAIN_URL)
+    driver.get(URL.MAIN_URL)
 
     #Нажимаем кнопку "Войти аккаунт" 
     driver.find_element(*Locators.MAIN_LOGIN_BUTTON).click()
@@ -23,12 +23,13 @@ def test_login_via_login_button(registered_user):
     driver.find_element(*Locators.LOGIN_BUTTON).click()
 
     #Ждем переход на главную страницу после входа 
-    WebDriverWait(driver, 5).until(EC.url_to_be(Data.MAIN_URL))
+    WebDriverWait(driver, 5).until(EC.url_to_be(URL.MAIN_URL))
 
-    #Проверяем по личному кабинету, что вход прошел успешно
+    #Переходим в личный кабинет
     driver.find_element(*Locators.PERSONAL_ACCOUNT).click()
-    WebDriverWait(driver, 5).until(EC.url_to_be(Data.PROFILE_URL))
-    assert driver.current_url == Data.PROFILE_URL
+    
+    #Проверяем личному кабинету, что вход прошел успешно
+    assert WebDriverWait(driver, 5).until(EC.url_to_be(URL.PROFILE_URL))
 
 
 #2 Вход по кнопке «Личный кабинет»
@@ -39,7 +40,7 @@ def test_login_via_personal_account(registered_user):
     password = registered_user["password"]
 
     #Переходим на главную страницу
-    driver.get(Data.MAIN_URL)
+    driver.get(URL.MAIN_URL)
 
     #Нажимаем на "Личный кабинет"
     driver.find_element(*Locators.PERSONAL_ACCOUNT).click()
@@ -50,12 +51,13 @@ def test_login_via_personal_account(registered_user):
     driver.find_element(*Locators.LOGIN_BUTTON).click()
 
     #Ждем переход на главную страницу после входа 
-    WebDriverWait(driver, 5).until(EC.url_to_be(Data.MAIN_URL))
+    WebDriverWait(driver, 5).until(EC.url_to_be(URL.MAIN_URL))
 
-    #Проверяем по личному кабинету, что вход прошел успешно
+    #Переходим в личный кабинет
     driver.find_element(*Locators.PERSONAL_ACCOUNT).click()
-    WebDriverWait(driver, 5).until(EC.url_to_be(Data.PROFILE_URL))
-    assert driver.current_url == Data.PROFILE_URL
+    
+    #Проверяем личному кабинету, что вход прошел успешно
+    assert WebDriverWait(driver, 5).until(EC.url_to_be(URL.PROFILE_URL))
 
 
 #3 Вход через кнопку в форме регистрации
@@ -66,7 +68,7 @@ def test_login_via_register_link_form(registered_user):
     password = registered_user["password"]
 
     #Переходим в форму регистрации
-    driver.get(Data.REGISTER_URL)
+    driver.get(URL.REGISTER_URL)
 
     #Нажимаем на надпись "Войти" 
     driver.find_element(*Locators.LOGIN_LINK).click()
@@ -77,12 +79,13 @@ def test_login_via_register_link_form(registered_user):
     driver.find_element(*Locators.LOGIN_BUTTON).click()
 
     #Ждем переход на главную страницу после входа 
-    WebDriverWait(driver, 5).until(EC.url_to_be(Data.MAIN_URL))
+    WebDriverWait(driver, 5).until(EC.url_to_be(URL.MAIN_URL))
+
+    #Переходим в личный кабинет
+    driver.find_element(*Locators.PERSONAL_ACCOUNT).click()
 
     #Проверяем по личному кабинету, что вход прошел успешно
-    driver.find_element(*Locators.PERSONAL_ACCOUNT).click()
-    WebDriverWait(driver, 5).until(EC.url_to_be(Data.PROFILE_URL))
-    assert driver.current_url == Data.PROFILE_URL
+    assert WebDriverWait(driver, 5).until(EC.url_to_be(URL.PROFILE_URL))
 
     
 
@@ -95,7 +98,7 @@ def test_login_via_forgott_password_form(registered_user):
     password = registered_user["password"]
 
     #Переходим в форму Восстановления пароля
-    driver.get(Data.FORGOT_URL)
+    driver.get(URL.FORGOT_PASSWORD_URL)
 
     #Нажимаем на надпись "Войти" 
     driver.find_element(*Locators.LOGIN_LINK).click()
@@ -106,9 +109,10 @@ def test_login_via_forgott_password_form(registered_user):
     driver.find_element(*Locators.LOGIN_BUTTON).click()
 
     #Ждем переход на главную страницу после входа 
-    WebDriverWait(driver, 5).until(EC.url_to_be(Data.MAIN_URL))
+    WebDriverWait(driver, 5).until(EC.url_to_be(URL.MAIN_URL))
 
-    #Проверяем по личному кабинету, что вход прошел успешно
+   #Переходим в личный кабинет
     driver.find_element(*Locators.PERSONAL_ACCOUNT).click()
-    WebDriverWait(driver, 5).until(EC.url_to_be(Data.PROFILE_URL))
-    assert driver.current_url == Data.PROFILE_URL
+    
+    #Проверяем по личному кабинету, что вход прошел успешно
+    assert WebDriverWait(driver, 5).until(EC.url_to_be(URL.PROFILE_URL))
